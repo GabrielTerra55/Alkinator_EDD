@@ -1,4 +1,6 @@
 from akinator.model.no import No
+from akinator.model.animal import Animal
+from akinator.model.pergunta import Pergunta
 
 
 class ArvoreAkinator:
@@ -11,9 +13,28 @@ class ArvoreAkinator:
         else:
             self.inserir_recursivamente(self.__raiz, valor)
 
-    def inserir_recursivamente(self, no_atual, valor):
-        if no_atual.pergunta is True:
-            if valor is True and no_atual.direita is None:
-                no_atual.direita = No(valor)
-            else:
-                self.inserir_recursivamente(no_atual, valor)
+    def inserir_pergunta(self, no_atual, valor):
+        if isinstance(no_atual, Pergunta):
+            if valor is True:
+                if no_atual.direita is None:
+                    no_atual.direita = Animal(valor)
+                else:
+                    self.inserir_recursivamente(no_atual, valor)
+            if valor is False:
+                if no_atual.esquerda is None:
+                    no_atual.esquerda = No(valor)
+                else:
+                    self.inserir_recursivamente(no_atual, valor)
+
+    def inserir_animal(self, no_atual, nome):
+        if isinstance(no_atual, Pergunta):
+            if valor is True:
+                if no_atual.direita is None:
+                    no_atual.direita = Animal(nome)
+                else:
+                    self.inserir_recursivamente(no_atual, nome)
+            if valor is False:
+                if no_atual.esquerda is None:
+                    no_atual.esquerda = No(nome)
+                else:
+                    self.inserir_recursivamente(no_atual, nome)
