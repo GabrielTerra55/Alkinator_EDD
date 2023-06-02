@@ -1,4 +1,5 @@
 import sys
+from akinator.controller import controller_alkinator
 class ControllerPrincipal:
     def __init__(self):
         self.__controller_alkinator = None
