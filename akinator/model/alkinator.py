@@ -1,14 +1,19 @@
 from akinator.model.no import No
 
-class ArvoreAlkinator:
+
+class ArvoreAkinator:
     def __init__(self):
-        self.raiz = None
+        self.__raiz = None
 
     def inserir(self, valor):
-        if self.raiz is None:
-            self.raiz = No(valor)
+        if self.__raiz is None:
+            self.__raiz = No(valor)
         else:
-            self.raiz = self.__inserir_recursivamente(self.raiz, valor)
+            self.inserir_recursivamente(self.__raiz, valor)
 
-    def __inserir_recursivamente(self, no_atual, valor):
-        pass
+    def inserir_recursivamente(self, no_atual, valor):
+        if no_atual.pergunta is True:
+            if valor is True and no_atual.direita is None:
+                no_atual.direita = No(valor)
+            else:
+                self.inserir_recursivamente(no_atual, valor)
