@@ -28,13 +28,19 @@ class ControllerAkinator:
             else:
                 raise Exception("resposta inválida")
         else:
-            return no.valor
+            return no
         
     def jogar(self):
-        animal = self.perguntar(self.akinator.raiz)
-        self.tela_akinator.perguntar_se_e_o_animal()
+        no_animal = self.perguntar(self.akinator.raiz)
+        questionamento = self.tela_akinator.perguntar_se_e_o_animal(no_animal.valor)
+        if questionamento == 's':
+            self.tela_akinator.fim()
+        novo_animal = self.tela_akinator.recolhe_novo_animal()
+        nova_pergunta = self.tela_akinator.recolhe_nova_pergunta()
+        self.akinator.inserir_pergunta_e_animais(no_animal.esqueda, nova_pergunta, novo_animal)
+        self.jogar()
+
         
-        self.tela_akinator.fim()
 
 # O animal entra a pergunra e o animal, precisa manter a pergunta antes de descer para o animal.
 # ideia parecida com pe atras.
