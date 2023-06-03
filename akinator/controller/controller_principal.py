@@ -1,6 +1,6 @@
 import sys
-from controller_akinator import ControllerAkinator
-from tela_principal import TelaPrincipal
+from controller.controller_akinator import ControllerAkinator
+from view.tela_principal import TelaPrincipal
 
 
 class ControllerPrincipal:
