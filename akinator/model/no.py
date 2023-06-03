@@ -3,7 +3,7 @@ class No:
         self.__valor = valor
         self.__esquerda = None
         self.__direita = None
-        self.__pergunta = None
+        self.__pergunta = False
     
     @property
     def valor(self):

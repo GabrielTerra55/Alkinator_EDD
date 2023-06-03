@@ -1,9 +1,17 @@
-from akinator.model.no import No
+from model.no import No
 
 
 class ArvoreAkinator:
     def __init__(self):
         self.__raiz = None
+    
+    @property
+    def raiz(self):
+        return self.__raiz
+    
+    @raiz.setter
+    def raiz(self, raiz):
+        self.__raiz = raiz
 
     def inserir(self, valor):
         if self.__raiz is None:
@@ -17,5 +25,6 @@ class ArvoreAkinator:
             no_direcao.valor = pergunta
             no_direcao.pergunta = True
             no_direcao.esquerda = valor
-            no_direcao.direita = animal_novo
+            no_direcao.direita = No(animal_novo)
             return 
+        raise Exception("Burro")
