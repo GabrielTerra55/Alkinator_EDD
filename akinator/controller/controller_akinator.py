@@ -30,7 +30,9 @@ class ControllerAkinator:
             pass
         self.tela_akinator.fim()
 
-
+# O animal entra a pergunra e o animal, precisa manter a pergunta antes de descer para o animal.
+# ideia parecida com pe atras.
+# não precisa ser o metodo de natural de uma inserção de arvore
 
 
 
