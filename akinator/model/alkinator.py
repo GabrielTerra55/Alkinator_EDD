@@ -24,7 +24,7 @@ class ArvoreAkinator:
             valor = no_direcao.valor  #recebe o animal que estava presente no nó
             no_direcao.valor = pergunta
             no_direcao.pergunta = True
-            no_direcao.esquerda = valor
+            no_direcao.esquerda = No(valor)
             no_direcao.direita = No(animal_novo)
             return 
         raise Exception("Burro")

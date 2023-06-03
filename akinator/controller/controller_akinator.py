@@ -21,22 +21,30 @@ class ControllerAkinator:
 
     def perguntar(self, no): 
         if no.pergunta:
+            print(no.esquerda)
+            print(no.direita)
             pergunta = no.valor
             questionamento = self.tela_akinator.perguntar(pergunta) 
             if questionamento == 's':
-                self.perguntar(no.direita) 
+                 return self.perguntar(no.direita) 
             elif questionamento == 'n':
-                self.perguntar(no.esquerda) #estourando aqui
+                return self.perguntar(no.esquerda) #estourando aqui
             else:
                 raise Exception("resposta inválida")
         else:
-            return no 
+            print(no.valor)
+            print(no.pergunta)
+            return no
 
     def jogar(self):
         if self.akinator.raiz is None:
             self.criar_primeiro_valor()
 
         no_animal = self.perguntar(self.akinator.raiz)
+        print(type(no_animal))
+        print(no_animal.valor)
+        print(no_animal.pergunta)
+
         animal = no_animal.valor
         questionamento = self.tela_akinator.perguntar_se_e_o_animal(animal) 
 
