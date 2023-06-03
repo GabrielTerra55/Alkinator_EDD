@@ -1,9 +1,12 @@
 import sys
-from akinator.controller import controller_alkinator
+from controller_akinator import ControllerAkinator
+from tela_principal import TelaPrincipal
+
+
 class ControllerPrincipal:
     def __init__(self):
-        self.__controller_alkinator = None
-        self.__tela_principal = None
+        self.__controller_akinator = ControllerAkinator(self)
+        self.__tela_principal = TelaPrincipal()
 
     @property
     def controller_arvore_b(self):
@@ -20,7 +23,7 @@ class ControllerPrincipal:
         Returns:
             Não retorna nada
         """
-        self.tela_principal.sistema_encerrado()
+        self.tela_principal.mostra_msg('Programa Encerrado.')
         sys.exit(1)
 
     def inicializa_game(self):
@@ -30,7 +33,7 @@ class ControllerPrincipal:
         Returns:
             Não retorna nada
         """
-        self.__controller_tictactoe.disputar()
+        self.__controller_akinator.jogar()
 
     def inicializa_controller_principal(self):
         """
@@ -45,6 +48,6 @@ class ControllerPrincipal:
         }
 
         while True:
-            opcao_escolhida = self.tela_principal.abre_tela()
+            opcao_escolhida = self.tela_principal.menu()
             funcao_escolhida = lista_opcoes[opcao_escolhida]
             funcao_escolhida()
