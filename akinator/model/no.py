@@ -1,10 +1,9 @@
-from abc import ABC
-
-class No(ABC):
+class No:
     def __init__(self, valor):
         self.__valor = valor
         self.__esquerda = None
         self.__direita = None
+        self.__pergunta = None
     
     @property
     def valor(self):
@@ -18,6 +17,10 @@ class No(ABC):
     def direita(self):
         return self.__direita
     
+    @property
+    def pergunta(self):
+        return self.__pergunta
+    
     @valor.setter
     def valor(self, valor):
         self.__valor = valor
@@ -29,3 +32,7 @@ class No(ABC):
     @direita.setter
     def direita(self, direita):
         self.__direita = direita
+    
+    @pergunta.setter
+    def pergunta(self, pergunta):
+        self.__pergunta = pergunta

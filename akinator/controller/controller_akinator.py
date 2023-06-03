@@ -16,18 +16,24 @@ class ControllerAkinator:
     def tela_akinator(self):
         return self.__tela_akinator
     
-    def perguntar(self, pergunta): #pergunta é o nó
-        questionamento = self.tela_akinator.pergunta(pergunta.pergunta)
-        if questionamento == 's':
-            if None: # verificar se o valor a direita é uma pergunta
-                # se sim manda o nopergunta pra a função perguntar de novo
-                pass
+    def perguntar(self, no): 
+        if no.pergunta:
+            questionamento = self.tela_akinator.pergunta(no.valor)
+            if questionamento == 's':
+                self.perguntar(no.direita) 
+                   
+            elif questionamento == 'n':
+                self.perguntar(no.esquerda)
+            
             else:
-                ajax = 'ajax'
-                # acesso a resposta e retorno para o usuario
+                raise Exception("resposta inválida")
         else:
-            # pegar a resposta, transformar em um noresposta e instanciar o animal em um de seus lados
-            pass
+            return no.valor
+        
+    def jogar(self):
+        animal = self.perguntar(self.akinator.raiz)
+        self.tela_akinator.perguntar_se_e_o_animal()
+        
         self.tela_akinator.fim()
 
 # O animal entra a pergunra e o animal, precisa manter a pergunta antes de descer para o animal.
