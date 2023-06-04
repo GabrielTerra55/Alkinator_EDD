@@ -20,5 +20,5 @@ class TelaAkinator:
     
     def recolhe_nova_pergunta(self):
         print(20 * '*')
-        resposta = input("O que difere o animal que você pensou do animal indicado? ")
+        resposta = input("O que difere o animal que você pensou do animal indicado (OBS: fale a caracteristica que o difere ex: voa)? ")
         return resposta

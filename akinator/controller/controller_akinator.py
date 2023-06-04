@@ -1,10 +1,12 @@
 from model.no import No
 from model.alkinator  import ArvoreAkinator
 from view.tela_akinator import TelaAkinator
+
+from dao.dao_akinator import ArvoreAkinatorDao
 class ControllerAkinator:
     def __init__(self, ctrl_princial):
         self.__controller_principal = ctrl_princial
-        self.__akinator = ArvoreAkinator()
+        self.__akinator = ArvoreAkinatorDao()
         self.__tela_akinator = TelaAkinator()
 
     @property
@@ -21,8 +23,6 @@ class ControllerAkinator:
 
     def perguntar(self, no): 
         if no.pergunta:
-            print(no.esquerda)
-            print(no.direita)
             pergunta = no.valor
             questionamento = self.tela_akinator.perguntar(pergunta) 
             if questionamento == 's':
@@ -32,19 +32,14 @@ class ControllerAkinator:
             else:
                 raise Exception("resposta inválida")
         else:
-            print(no.valor)
-            print(no.pergunta)
             return no
 
     def jogar(self):
-        if self.akinator.raiz is None:
-            self.criar_primeiro_valor()
 
-        no_animal = self.perguntar(self.akinator.raiz)
-        print(type(no_animal))
-        print(no_animal.valor)
-        print(no_animal.pergunta)
-
+        self.confere_se_vazio()
+        teste = self.akinator.get_all()
+        teste = list(teste)
+        no_animal = self.perguntar(teste[0])
         animal = no_animal.valor
         questionamento = self.tela_akinator.perguntar_se_e_o_animal(animal) 
 
@@ -54,9 +49,16 @@ class ControllerAkinator:
         
         novo_animal = self.tela_akinator.recolhe_novo_animal() 
         nova_pergunta = self.tela_akinator.recolhe_nova_pergunta() 
-        self.akinator.inserir_pergunta_e_animais(no_animal, nova_pergunta, novo_animal)
+        ArvoreAkinator.inserir_pergunta_e_animais(no_animal, nova_pergunta, novo_animal)
         self.jogar()
+
+    def confere_se_vazio(self):
+        raiz = self.akinator.get_all()
+        if not raiz:
+            self.criar_primeiro_valor()
+
 
     def criar_primeiro_valor(self):
         no_baleia = No('Baleia')
-        self.akinator.raiz = no_baleia
+        #self.akinator.get_all().  = no_baleia
+        self.akinator.add(0, no_baleia)
